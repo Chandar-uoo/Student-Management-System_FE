@@ -3,6 +3,7 @@ import { axiosInstance } from "../api/axiosInstance";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useRefresh } from "./useRefresh";
+import { tokenService } from "../utils/tokenService";
 
 function useDashBoardHooks() {
   const {  triggerRefresh } = useRefresh();
@@ -50,6 +51,7 @@ function useDashBoardHooks() {
       setSearchTerm("");
       setStudents(null);
       setyearData(null);
+      tokenService.clear()
       toast.success("logout sucessfull")
       nav("/login");
     } catch (error) {
