@@ -5,7 +5,7 @@ import useLoginHooks from "../hooks/useLoginHooks";
 export const Login = () => {
   const nav = useNavigate();
 
-const { formData, loginHandler, handleChange, error } = useLoginHooks()
+const { formData, loginHandler, handleChange } = useLoginHooks()
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -17,11 +17,6 @@ const { formData, loginHandler, handleChange, error } = useLoginHooks()
           Welcome back! Please enter your details.
         </p>
 
-        {error && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm">
-            {error}
-          </div>
-        )}
 
         <form onSubmit={loginHandler} className="space-y-5">
           <div>

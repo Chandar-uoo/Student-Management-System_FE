@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Signup = () => {
   const nav = useNavigate();
-  const { formData, error, handleChange, signupHandler, loading } =
+  const { formData, handleChange, signupHandler, loading } =
     useSignupHooks();
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 py-8">
@@ -22,12 +22,7 @@ export const Signup = () => {
           signupHandler={signupHandler}
           loading={loading}
         />
-        {/*error*/}
-        {error && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm">
-            {error}
-          </div>
-        )}
+      
         <p className="text-sm text-gray-500 text-center mt-6">
           Already have an account?{" "}
           <span
