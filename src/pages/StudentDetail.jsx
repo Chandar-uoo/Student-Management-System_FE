@@ -44,7 +44,7 @@ export const StudentDetail = () => {
         {/* Profile Section */}
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-8 border-b pb-8 mb-8">
           <img
-            src={`http://localhost:3000${student.photo}`}
+           src={`http://localhost:3000${student.photo}`}
             alt={student.fullName}
             className="w-40 h-40 rounded-full object-cover border-4 border-blue-100 shadow-md"
             onError={(e) =>

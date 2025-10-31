@@ -10,9 +10,7 @@ function useStudentFormHook({ isUpdate, initialData }) {
   {
     /*state*/
   }
-  const [addLoading, setAddLoading] = useState(false);
-  const [updateLoading, setUpdateLoading] = useState(false);
-  const [uploadingPhoto, setUploadingPhoto] = useState(false);
+ 
 
   const [formData, setFormData] = useState({
     fullName: initialData?.fullName || "",
@@ -53,7 +51,7 @@ function useStudentFormHook({ isUpdate, initialData }) {
     const fd = new FormData();
     fd.append("photo", file);
 
-    setUploadingPhoto(true);
+    
     try {
       const res = await axiosInstance.post("/upload", fd, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -63,22 +61,20 @@ function useStudentFormHook({ isUpdate, initialData }) {
     } catch (err) {
       toast.error("Failed to upload image. Please try again.");
       console.error("Image upload failed:", err);
-    } finally {
-      setUploadingPhoto(false);
-    }
+    } 
   };
 
   // Submit student form
   const handleSubmit = async () => {
     try {
       if (isUpdate) {
-        setUpdateLoading(true);
+       
         await axiosInstance.put(`/student/update/${initialData._id}`, formData);
         toast.success("details updated");
         triggerRefresh();
         nav("/");
       } else {
-        setAddLoading(true);
+      ;
         await axiosInstance.post("/student/add", formData);
         triggerRefresh()
         toast.success("details added");
@@ -87,10 +83,7 @@ function useStudentFormHook({ isUpdate, initialData }) {
     } catch (err) {
       toast.error(err.message);
       console.error(" Submit failed:", err);
-    } finally {
-      setAddLoading(false);
-      setUpdateLoading(false);
-    }
+    } 
   };
 
   return {
@@ -98,9 +91,7 @@ function useStudentFormHook({ isUpdate, initialData }) {
     setFormData,
     handleChange,
     handleSubmit,
-    addLoading,
-    updateLoading,
-    uploadingPhoto,
+
   };
 }
 
