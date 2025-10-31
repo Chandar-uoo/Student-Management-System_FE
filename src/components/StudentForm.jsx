@@ -4,10 +4,7 @@ const StudentForm = ({
   isUpdate,
   handleSubmit,
   formData,
-  addLoading,
-  updateLoading,
   handleChange,
-  uploadingPhoto,
 }) => {
   const nav = useNavigate();
 
@@ -34,14 +31,14 @@ const StudentForm = ({
 
           {/* Form */}
           <form onSubmit={onSubmit} className="p-8 space-y-6">
-            {/* Name */}
+            {/* Full Name */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Full Name
               </label>
               <input
                 type="text"
-                pattern="^[a-zA-Z\s]+$"
+                pattern="^[a-zA-Z\\s]+$"
                 minLength={2}
                 maxLength={50}
                 value={formData.fullName}
@@ -168,7 +165,7 @@ const StudentForm = ({
                 </label>
                 <input
                   type="text"
-                  pattern="^[a-zA-Z\s]+$"
+                  pattern="^[a-zA-Z\\s]+$"
                   minLength={2}
                   maxLength={50}
                   value={formData.guardianName}
@@ -202,34 +199,23 @@ const StudentForm = ({
                 type="file"
                 accept="image/*"
                 onChange={handleChange("photo")}
-                disabled={uploadingPhoto}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500"
               />
 
-              {/* Upload Progress */}
-              {uploadingPhoto && (
-                <div className="mt-3 flex items-center gap-2 text-blue-600">
-                  <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                  <span className="text-sm">Uploading photo...</span>
+              {/* Photo Preview */}
+              {formData.photo && typeof formData.photo === "string" && (
+                <div className="mt-3">
+                  <img
+                    src={`http://localhost:3000${formData.photo}`}
+                    alt="Student Photo"
+                    className="w-32 h-32 object-cover rounded-lg border shadow-sm"
+                    onError={(e) => {
+                      e.target.src =
+                        "https://via.placeholder.com/128?text=No+Image";
+                    }}
+                  />
                 </div>
               )}
-
-              {/* Photo Preview */}
-              {formData.photo &&
-                typeof formData.photo === "string" &&
-                !uploadingPhoto && (
-                  <div className="mt-3">
-                    <img
-                      src={`http://localhost:3000${formData.photo}`}
-                      alt="Student Photo"
-                      className="w-32 h-32 object-cover rounded-lg border shadow-sm"
-                      onError={(e) => {
-                        e.target.src =
-                          "https://via.placeholder.com/128?text=No+Image";
-                      }}
-                    />
-                  </div>
-                )}
             </div>
 
             {/* Action Buttons */}
@@ -238,31 +224,15 @@ const StudentForm = ({
                 type="button"
                 onClick={() => nav("/admin/students")}
                 className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
-                disabled={addLoading || updateLoading || uploadingPhoto}
               >
                 Cancel
               </button>
 
               <button
                 type="submit"
-                disabled={addLoading || updateLoading || uploadingPhoto}
-                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-6 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-6 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium shadow-sm"
               >
-                {addLoading || updateLoading ? (
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Saving...
-                  </div>
-                ) : uploadingPhoto ? (
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Wait...
-                  </div>
-                ) : isUpdate ? (
-                  "Update Student"
-                ) : (
-                  "Add Student"
-                )}
+                {isUpdate ? "Update Student" : "Add Student"}
               </button>
             </div>
           </form>
