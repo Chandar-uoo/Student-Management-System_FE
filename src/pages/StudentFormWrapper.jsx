@@ -9,7 +9,7 @@ export const StudentFormWrapper = () => {
   const nav = useNavigate();
   const { student: initialData } = location.state || {};
   const isUpdate = initialData ? true : false;
-  const { formData, setFormData, handleSubmit,handleChange } = useStudentFormHook({
+  const { formData, handleSubmit,handleChange } = useStudentFormHook({
     initialData,
     isUpdate,
   });
@@ -21,7 +21,6 @@ export const StudentFormWrapper = () => {
             isUpdate={isUpdate}
             handleChange={handleChange}
              handleSubmit={handleSubmit}
-            setFormData={setFormData}
             formData={formData}
           />
         ) : (
@@ -29,7 +28,6 @@ export const StudentFormWrapper = () => {
             isUpdate={isUpdate}
              handleChange={handleChange}
             handleSubmit={handleSubmit}
-            setFormData={setFormData}
             formData={formData}
           />
         )}
