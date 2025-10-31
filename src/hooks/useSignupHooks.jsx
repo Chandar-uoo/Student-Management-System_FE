@@ -14,7 +14,7 @@ function useSignupHooks() {
     phoneNumber: "",
     address: "",
   });
-  const [loading, setLoading] = useState(false);
+ 
 
   {/* to  state update*/}
   const handleChange = (e) => {
@@ -28,7 +28,6 @@ function useSignupHooks() {
   const signupHandler = async (e) => {
     e.preventDefault();
     
-    setLoading(true);
 
     try {
       const res = await axiosInstance.post("/auth/signup", formData);
@@ -43,9 +42,7 @@ function useSignupHooks() {
       }
     } catch (err) {
       toast.error(err.message || "Signup failed")
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
 
   return {
@@ -53,7 +50,6 @@ function useSignupHooks() {
     setFormData,
     handleChange,
     signupHandler,
-    loading,
   };
 }
 export default useSignupHooks;
