@@ -47,6 +47,7 @@ axiosInstance.interceptors.response.use(
         originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
         return axiosInstance(originalRequest);
       } catch (refreshError) {
+        redirectToLogin()
         return Promise.reject({
           message: "Please login again.",
           status: 401,
@@ -94,3 +95,8 @@ axiosInstance.interceptors.response.use(
     });
   }
 );
+
+// redirect 
+export const redirectToLogin = () => {
+  window.location.href = "/login";
+};
