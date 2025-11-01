@@ -1,7 +1,7 @@
 import React from "react";
 import { User, Edit2, Trash2, View } from "lucide-react"; // icons
 
-export const StudentCard = ({ students = [], onEdit, onDelete, onVeiw }) => {
+export const StudentCard = ({ students = [], onVeiw }) => {
   if (!students.length)
     return (
       <p className="text-center text-gray-500 italic mt-6">
@@ -63,20 +63,6 @@ export const StudentCard = ({ students = [], onEdit, onDelete, onVeiw }) => {
 
             {/* Buttons */}
             <div className="flex gap-2">
-              <button
-                onClick={() => onEdit(student)}
-                className="flex-1 flex items-center justify-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-100 transition-colors"
-              >
-                <Edit2 size={16} />
-                Edit
-              </button>
-              <button
-                onClick={() => onDelete(student._id)}
-                className="flex-1 flex items-center justify-center gap-2 bg-red-50 text-red-600 px-4 py-2 rounded-lg hover:bg-red-100 transition-colors"
-              >
-                <Trash2 size={16} />
-                Delete
-              </button>
               <button
                 onClick={() => onVeiw(student)}
                 className="flex-1 flex items-center justify-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-100 transition-colors"
