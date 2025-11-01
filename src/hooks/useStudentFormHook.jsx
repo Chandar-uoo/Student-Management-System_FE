@@ -72,7 +72,7 @@ function useStudentFormHook({ isUpdate, initialData }) {
        
         await axiosInstance.put(`/student/update/${initialData._id}`, formData);
         toast.success("details updated");
-        triggerRefresh();
+        triggerRefresh();        
         nav("/");
       } else {
       ;

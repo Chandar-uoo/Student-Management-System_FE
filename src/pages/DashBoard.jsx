@@ -18,10 +18,11 @@ export const DashBoard = () => {
     handleLogout,
     onSearch,
   } = useDashBoardHooks();
-  const { refresh } = useRefresh();
+  const { refresh,cleanUpRefresh } = useRefresh();
   useEffect(() => {
     fetchStudentData();
     yearDataHandler();
+    cleanUpRefresh()
   }, [refresh]);
 
   return (
