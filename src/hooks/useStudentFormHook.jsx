@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { axiosInstance } from "../api/axiosInstance";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+
 import { useRefresh } from "./useRefresh";
+import { toast } from "react-toastify";
 
 function useStudentFormHook({ isUpdate, initialData }) {
   const nav = useNavigate();

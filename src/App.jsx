@@ -4,6 +4,7 @@ import { Signup } from "./pages/Signup";
 import { DashBoard } from "./pages/DashBoard";
 import { StudentFormWrapper } from "./pages/StudentFormWrapper";
 import { StudentDetail } from "./pages/StudentDetail";
+import { ToastContainer, Bounce } from "react-toastify";
 
 function App() {
   return (
@@ -17,6 +18,20 @@ function App() {
           <Route path="/student" element={<StudentDetail />} />
         </Routes>
       </BrowserRouter>
+       <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        limit={4}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </>
   );
 }

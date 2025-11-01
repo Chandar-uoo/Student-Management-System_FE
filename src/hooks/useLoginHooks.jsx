@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../api/axiosInstance";
 import { tokenService } from "../utils/tokenService";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 function useLoginHooks() {
   const nav = useNavigate();

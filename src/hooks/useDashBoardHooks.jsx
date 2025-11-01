@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { axiosInstance } from "../api/axiosInstance";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useRefresh } from "./useRefresh";
 import { tokenService } from "../utils/tokenService";
 
@@ -26,6 +26,7 @@ function useDashBoardHooks() {
       await axiosInstance.delete(`/student/delete/${id}`);
       toast.success("student deleted");
       triggerRefresh();
+      nav("/")
     } catch (err) {
        toast.error(err.message)
     }
